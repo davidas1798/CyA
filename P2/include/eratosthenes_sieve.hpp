@@ -9,6 +9,8 @@ class EratosthenesSieve
         EratosthenesSieve(vector<int> v);
         
         void Sieve();
+        
+        ostream& Write(ostream& os);
 
     private:
          void Remove(ErastosthenesNumber n);
