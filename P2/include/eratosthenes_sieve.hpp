@@ -1,5 +1,7 @@
 #pragma once 
 #include <vector>
+#include <algorithm>
+#include "../include/eratosthenes_number.hpp"
 
 class EratosthenesSieve
 {
@@ -9,11 +11,11 @@ class EratosthenesSieve
         EratosthenesSieve(vector<int> v);
         
         void Sieve();
+        void EraseNonPrime();
         
-        ostream& Write(ostream& os);
+        ostream& Write(ostream& os) const;
+        friend ostream& operator<<(ostream& os, const EratosthenesSieve& vec);
 
     private:
-         void Remove(ErastosthenesNumber n);
-         void EraseNonPrime();
-
+         void Remove(EratosthenesNumber n);
 };
