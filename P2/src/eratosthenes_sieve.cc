@@ -1,4 +1,4 @@
-#include "../include/eratosthenes_sieve.hpp"
+#include "../include/eratosthenes_sieve.h"
 
 EratosthenesSieve::EratosthenesSieve(vector<int> v)
 {

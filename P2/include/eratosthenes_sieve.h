@@ -1,7 +1,8 @@
-#pragma once 
+#ifndef ERATOSTHENES_INCLUDE_ERATOSTHENES_SIEVE_H
+#define ERATOSTHENES_INCLUDE_ERATOSTHENES_SIEVE_H
 #include <vector>
 #include <algorithm>
-#include "../include/eratosthenes_number.hpp"
+#include "../include/eratosthenes_number.h"
 
 class EratosthenesSieve
 {
@@ -19,3 +20,4 @@ class EratosthenesSieve
     private:
          void Remove(EratosthenesNumber n);
 };
+#endif //ERATOSTHENES_INCLUDE_ERATOSTHENES_SIEVE_H

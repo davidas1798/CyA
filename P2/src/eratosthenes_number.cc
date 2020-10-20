@@ -1,4 +1,4 @@
-#include "../include/eratosthenes_number.hpp"
+#include "../include/eratosthenes_number.h"
 
 EratosthenesNumber::EratosthenesNumber(int n, bool prime):
     number_(n), 
@@ -21,7 +21,7 @@ void EratosthenesNumber::SetNumber(int number)
     number_ = number;
 }
 
-ostream& EratosthenesNumber::write(ostream& os)
+ostream& EratosthenesNumber::Write(ostream& os)
 {
     os << number_;
     return os;
