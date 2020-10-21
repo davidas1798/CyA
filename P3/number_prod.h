@@ -1,3 +1,5 @@
+#ifndef PALINDROME_INCLUDE_NUMBERPROD_H_
+#define PALINDROME_INCLUDE_NUMBERPROD_H_
 #include <iostream>
 
 using namespace std;
@@ -18,3 +20,5 @@ class NumberProd
     //bool operator!=(const NumberProd& other) const;
     friend ostream& operator<<(ostream& os, NumberProd& input);
 };
+
+#endif //PALINDROME_INCLUDE_NUMBERPROD_H_

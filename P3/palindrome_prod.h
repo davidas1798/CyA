@@ -1,3 +1,5 @@
+#ifndef PALINDROME_INCLUDE_PALINDROMEPROD_H
+#define PALINDROME_INCLUDE_PALINDROMEPROD_H
 #include <set>
 #include <cmath>
 #include "number_prod.h"
@@ -20,3 +22,5 @@ class PalindromeProd
     bool IsOneDigit(int number);
     bool IsNDigit(int n, int number);
 };
+
+#endif // PALINDROME_INCLUDE_PALINDROMEPROD_H
