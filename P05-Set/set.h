@@ -28,6 +28,7 @@ class Set {
 
     void Insert(int element);
     void Erase(int element);
+    void Clear();
 
     void operator++(int);
     
@@ -37,7 +38,7 @@ class Set {
     Set operator!();
     Set& operator=(Set const &other);
 
-    vector<long> GetSet() {return set_;}
+    bool Empty();
 
     friend ostream& operator<<(ostream& output, Set& set);
 

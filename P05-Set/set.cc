@@ -46,6 +46,12 @@ void Set::Erase(int element) {
   }
 }
 
+void Set::Clear() {
+  for(long i = 0; i < max_value_; i++) {
+    Erase(i);
+  }
+}
+
 /// @brief Aumenta el tamaño del conjunto
 void Set::operator++(int) {
   set_.push_back(0);
@@ -129,6 +135,10 @@ Set& Set::operator=(Set const &other) {
   set_ = other.set_;
   max_value_ = other.max_value_;
   return *this;
+}
+
+bool Set::Empty() {
+  return set_[0] == 0;
 }
 
 /// @brief Operador de salida de flujo
