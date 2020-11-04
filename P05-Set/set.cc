@@ -7,11 +7,14 @@
 
 #include "set.h"
 
+/// @brief Constructor por defecto
 Set::Set() {
   set_.push_back(0);
   max_value_ = kLongSize;
 }
 
+/// @brief Constructor con parámetro de máximo valor
+/// @param max_value es el máximo valor que se puede almacenar en el conjunto
 Set::Set(int max_value) {
   max_value_ = 0;
   while(max_value_ < max_value) {
@@ -21,6 +24,8 @@ Set::Set(int max_value) {
   max_value_ = max_value;
 }
 
+/// @brief Inserta un elemento en el conjunto
+/// @param element elemento a insertar en el conjunto
 void Set::Insert(int element) {
   if(element > max_value_)
     cerr << "El elemento " << element << " sobrepasa el máximo permitido por el conjunto" << endl;
@@ -32,6 +37,8 @@ void Set::Insert(int element) {
   }
 }
 
+/// @brief Elimina un elemento del conjunto
+/// @param element elemento a eliminar del conjunto
 void Set::Erase(int element) {
   if(GetBit(element)) {
     int index = element / kBlockSize;
@@ -39,11 +46,15 @@ void Set::Erase(int element) {
   }
 }
 
+/// @brief Aumenta el tamaño del conjunto
 void Set::operator++(int) {
   set_.push_back(0);
   max_value_ += kLongSize;
 }
 
+/// @brief Realiza la operación de concatenación con otro conjunto
+/// @param other es el otro conjunto con el que se concatena
+/// @return El conjunto resultado de la operación
 Set Set::operator+(Set const &other) {
   Set operand_a, operand_b;
   operand_a = *this;
@@ -61,6 +72,9 @@ Set Set::operator+(Set const &other) {
   return result;
 }
 
+/// @brief Realiza la operación de diferencia con otro conjunto
+/// @param other es el otro conjunto con el que se concatena
+/// @return El conjunto resultado de la operación
 Set Set::operator-(Set const &other) {
   Set operand_a, operand_b;
   operand_a = *this;
@@ -78,6 +92,9 @@ Set Set::operator-(Set const &other) {
   return result;
 }
 
+/// @brief Realiza la operación de intersección con otro conjunto
+/// @param other es el otro conjunto con el que se concatena
+/// @return El conjunto resultado de la operación
 Set Set::operator*(Set const &other) {
   Set operand_a, operand_b;
   operand_a = *this;
@@ -95,6 +112,8 @@ Set Set::operator*(Set const &other) {
   return result;
 }
 
+/// @brief Realiza la operación de complemento
+/// @return El conjunto resultado de la operación
 Set Set::operator!() {
   // Hacemos la operación complemento y lo guardamos en result
   Set result(max_value_);
@@ -104,12 +123,17 @@ Set Set::operator!() {
   return result;
 }
 
+/// @brief Operador de asignación
+/// @param other es el conjunto al que se va a igualar
 Set& Set::operator=(Set const &other) { 
   set_ = other.set_;
   max_value_ = other.max_value_;
   return *this;
 }
 
+/// @brief Operador de salida de flujo
+/// @param output canal de salida
+/// @param set conjunto que se va a imprimir
 ostream& operator<<(ostream& output, Set& set) {
   output << '{';
   for(int i = 0; i <= set.max_value_; i++) {
@@ -120,10 +144,9 @@ ostream& operator<<(ostream& output, Set& set) {
   return output;
 }
 
-/*istream& operator>>(istream& input, Set& set) {
-  input >> 
-}*/
-
+/// @brief Indica si un número se encuentra en el conjunto
+/// @param index número que queremos saber si está en el conjunto
+/// @return true si index está, false si no está
 bool Set::GetBit(int index) {
   int set_index = index / kBlockSize;
   long position = ((index-1) % kBlockSize);

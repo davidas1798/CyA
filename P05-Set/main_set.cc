@@ -81,8 +81,7 @@ int main(int argc, char* argv[]) {
     }
 
     for(size_t i = 0, j = 0; i < operaciones.size(); i++, j+=2) {
-        switch(operaciones[i])
-        {
+        switch(operaciones[i]) {
           case 1:
             resultados.push_back(sets[j] + sets[j+1]);
             break;
@@ -91,6 +90,10 @@ int main(int argc, char* argv[]) {
             break;
           case 3:
             resultados.push_back(sets[j] * sets[j+1]);
+            break;
+          case 0:
+            resultados.push_back(!sets[j]);
+            j--;
             break;
         }
     }

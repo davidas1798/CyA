@@ -40,10 +40,9 @@ class Set {
     vector<long> GetSet() {return set_;}
 
     friend ostream& operator<<(ostream& output, Set& set);
-    friend istream& operator<<(istream& input, Set& set);
 
-    bool GetBit(int index);
   private:
+    bool GetBit(int index);
 };
 
 #endif // SET_P05_SET_SET_H_
