@@ -12,17 +12,23 @@
 using namespace std;
 
 int main() {
-  Set set;
+  Set set1, set2;
   int element;
   
   cin >> element;
   while(element != 0) {
-    set.Insert(element);
+    set1.Insert(element);
+    cin >> element;
+  }
+
+  cin >> element;
+  while(element != 0) {
+    set2.Insert(element);
     cin >> element;
   }
   
   Set result;
-  result = set + result;
+  result = set1 - set2;
   cout << result << endl;
 
   return 0;

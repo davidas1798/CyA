@@ -55,8 +55,8 @@ Set Set::operator+(Set const &other) {
     operand_b++;
   // Hacemos la operación intersección y lo guardamos en result
   Set result(operand_a.max_value_);
-  /*for(int i = 0; i < result.set_.size(); i++)
-    result.set_[i] = operand_a.set_[i] & operand_b.set_[i];*/
+  for(size_t i = 0; i < result.set_.size(); i++)
+    result.set_[i] = operand_a.set_[i] | operand_b.set_[i];
 
   return result;
 }
@@ -120,11 +120,8 @@ ostream& operator<<(ostream& output, Set& set) {
   return output;
 }
 
-/*istream& operator>>(istream& input, Set& set)
-{
-  input.getline(input, line);
-
-
+/*istream& operator>>(istream& input, Set& set) {
+  input >> 
 }*/
 
 bool Set::GetBit(int index) {
