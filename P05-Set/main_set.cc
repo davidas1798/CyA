@@ -16,7 +16,9 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
   
-  if(arv[1] == "--help") {
+  const string kHelp = "--help";
+  
+  if(argv[1] == kHelp) {
     cout << "Calculadora de conjuntos:" << endl;
     cout << "Este programa realiza operaciones con conjuntos, ";
     cout << "introduzca un fichero de entrada con el formato {elemento1, elemento2...} [operación] {elemento1, elemento2...} ";
@@ -33,21 +35,29 @@ int main(int argc, char* argv[]) {
     ifstream input_file(argv[1]);
     string line, number;
     int int_number = 0;
-    bool suma, resta, multiplicacion, complemento;
     Set* new_set;
     vector<Set> sets;
     vector<int> operaciones;
+    vector<Set> resultados;
     
     while(getline(input_file, line)) {
-      for(int i = 0; i < line.size(); i++) {
+      for(size_t i = 0; i < line.size(); i++) {
         if(line[i] == '{') {
           new_set = new Set;
         }
 
-        else if(line[i] == '}' || line[i] == ',') {
+        else if(line[i] == ',') {
           int_number = stoi(number);
           new_set->Insert(int_number);
           number.clear();
+        }
+
+        else if(line[i] == '}') {
+          int_number = stoi(number);
+          new_set->Insert(int_number);
+          number.clear();
+
+          sets.push_back(*new_set);
         }
 
         else if(line[i] == '+') {
@@ -57,7 +67,7 @@ int main(int argc, char* argv[]) {
           operaciones.push_back(2);
         }
         else if(line[i] == '*') {
-          operaciones.push_back(3)
+          operaciones.push_back(3);
         }
         else if(line[i] == '!') {
           operaciones.push_back(0);
@@ -70,8 +80,25 @@ int main(int argc, char* argv[]) {
       }
     }
 
-    for(int i = 0; i < sets.size(); i++)
-      cout << sets[i] << endl;
+    for(size_t i = 0, j = 0; i < operaciones.size(); i++, j+=2) {
+        switch(operaciones[i])
+        {
+          case 1:
+            resultados.push_back(sets[j] + sets[j+1]);
+            break;
+          case 2:
+            resultados.push_back(sets[j] - sets[j+1]);
+            break;
+          case 3:
+            resultados.push_back(sets[j] * sets[j+1]);
+            break;
+        }
+    }
+    
+    ofstream output(argv[2]);
+    for(size_t i = 0; i < resultados.size(); i++)
+      output << resultados[i] << endl;
+    output.close();
 
     return 0;
   }
