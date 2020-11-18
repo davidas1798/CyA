@@ -11,10 +11,16 @@
 
 #include "dfa.h"
 
+/// @brief Constructor of the class DFA
 DFA::DFA() {}
 
+/// @brief Destructor of the class DFA
 DFA::~DFA() {}
 
+/// @brief Does the transition introduced
+/// @param state the state where it begins the transition
+/// @param input the input symbol of the transition
+/// @return Resulting state of the transition
 State DFA::Transition(State state, char input) {
   State output;
   for(int i = 0; i < state.Size(); i++)
@@ -24,6 +30,9 @@ State DFA::Transition(State state, char input) {
   return output;
 }
 
+/// @brief Analyze a word and checks if it is valid
+/// @param word the word to analyze
+/// @return true if it is valid, false if it is not
 bool DFA::Analyze(string word) {
   State analyzed = *start_;
   for(int i = 0; i < word.size(); i++) 
@@ -32,6 +41,17 @@ bool DFA::Analyze(string word) {
   return analyzed.Acceptation();
 }
 
+bool DFA::IsInAlphabet(char symbol) {
+  for(char alphabet_symbol : alphabet_) {
+    if(alphabet_symbol == symbol)
+      return true;
+  }
+  return false;
+}
+
+/// @brief Finds the state with the name introduced
+/// @param state_name name of the state
+/// @return State searched, if it is not in the DFA it returns the last state
 State& DFA::FindState(string state_name) {
   for(State& possible_state : states_) {
     if(possible_state.GetName() == state_name)
@@ -41,10 +61,14 @@ State& DFA::FindState(string state_name) {
   return states_[states_.size() - 1];
 }
 
+/// @brief Gets the number of states of the DFA
+/// @return Number of states of the DFA
 size_t DFA::Size() {
   return states_.size();
 }
 
+/// @brief Read the input DFA file and initialize it
+/// @param input the input stream that will initialize the DFA
 istream& DFA::Read(istream& input) {
   size_t alphabet_size, states_size, acceptation_size, transitions_size;
   char symbol;

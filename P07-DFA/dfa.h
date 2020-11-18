@@ -27,6 +27,7 @@ class DFA {
 
     State Transition(State state, char input);
     bool Analyze(string word);
+    bool IsInAlphabet(char symbol);
 
     State& FindState(string state_name);
     size_t Size();

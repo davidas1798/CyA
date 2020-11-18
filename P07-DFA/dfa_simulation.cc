@@ -11,6 +11,7 @@
  */
 
 #include <fstream>
+#include "uncomment.h"
 #include "dfa.h"
 
 int main(int argc, char* argv[]) {
@@ -28,8 +29,15 @@ int main(int argc, char* argv[]) {
 
   else {
     ifstream input_dfa_file(argv[1]);
+    Uncomment uncommented(input_dfa_file);
+    ofstream uncommented_dfa_file("tmp");
+    uncommented_dfa_file << uncommented;
+    uncommented_dfa_file.close();
+    ifstream uncommented_dfa_input_file("tmp");
+    remove("tmp");
+    
     DFA dfa;
-    dfa.Read(input_dfa_file);
+    dfa.Read(uncommented_dfa_input_file);
 
     ifstream input_file(argv[2]);
     ofstream output_file(argv[3]);
