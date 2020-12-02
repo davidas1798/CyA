@@ -1,0 +1,21 @@
+2
+0
+1
+5
+q0
+cero
+0mod3
+1mod3
+2mod3
+q0
+0
+q0 -> 0cero
+q0 -> 11mod3
+cero -> ~
+0mod3 -> 00mod3
+0mod3 -> 11mod3
+0mod3 -> ~
+1mod3 -> 02mod3
+1mod3 -> 10mod3
+2mod3 -> 01mod3
+2mod3 -> 12mod3
